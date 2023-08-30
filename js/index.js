@@ -1,4 +1,7 @@
-import { tasks } from './tasks.js';
+import { tasks } from '../assets/db/tasks.js';
+// import { v4 as UUIDV4 } from 'uuid';
+// const { v4: UUIDV4 } = require('uuid');
+
 const divGeneral = document.querySelector('.contenedorGeneral');
 const modalContainer = document.querySelector('.modalContainer')
 let all = document.querySelectorAll('.divOptions > div');
@@ -15,11 +18,12 @@ inputTask.addEventListener('keydown', async (e) => {
         // Insertar tarea
         tasks.push({
             id: taskLength + "",
+            // id: UUIDV4(),
             title: "" + e.target.value,
             description: "" + e.target.value,
             status: "pending"
         })
-        // console.log(tasks);
+        console.log(tasks);
 
         divTask.innerHTML = ""
         crearElementoDiv("all")
@@ -72,7 +76,15 @@ divGeneral.addEventListener('click', (e) => {
     }
     if(e.target.matches('.edit')){
         let idEdit = e.target.parentElement.parentElement.parentElement.firstChild.nextSibling.id
-        let idActualizar = editarRegistroDiv(idEdit)
+    
+        // const updateTask = {
+        //     id: 1,
+        //     titile: 'ABC',
+        //     description: '123',
+        //     status: 'pending'
+        // }
+
+        editarRegistroDiv(idEdit)
 
         modalContainer.style.display = "flex"
     }
@@ -106,7 +118,7 @@ const crearElementoDiv = (stat) => {
             divRow.classList.add('taskRow')
             divRow.innerHTML += `
                         <div id="${dat.id}" class="">${dat.title},${dat.description},${dat.status}</div>
-                        <div class="containerImgOpcion"><img class="puntosimg" src="3puntos.svg" alt=""></div>
+                        <div class="containerImgOpcion"><img class="puntosimg" src="../assets/icons/3puntos.svg" alt=""></div>
                     `
         }
         divTask.append(divRow)
@@ -114,7 +126,15 @@ const crearElementoDiv = (stat) => {
 }
 
 // Insertar datos en inputs
-const editarRegistroDiv = (id,title,description,status)=>{
+
+
+/**
+ * Función que edita un usuario.
+ * @param {Object} task Deifinición de una tarea.
+ * @returns Retorna el ID de la tarea editada.
+ */
+const editarRegistroDiv = (id) =>{
+
     let object = tasks.filter(objeto => id == objeto.id)
     let inputs = modalContainer.querySelectorAll('input, select');
     
@@ -137,27 +157,29 @@ const editarRegistroDiv = (id,title,description,status)=>{
 }
 
 // Guardar registro tasks
-const actualizarRegistroEditado = (id)=>{
-    let object = tasks.filter(objeto => id == objeto.id)
+const actualizarRegistroEditado = (id) =>{
+    // let object = tasks.filter(objeto => id == objeto.id)
+    let taskFound = tasks.find(objeto => id == objeto.id);
+
     let inputs = modalContainer.querySelectorAll('input, select');
     let paramDataset = contenedorTodoList.dataset.name
 
     inputs.forEach(input=>{
         if(input.classList.contains('editTitle')){
-            object[0].title = input.value
+            taskFound.title = input.value
         }
         else if(input.classList.contains('editDescription')){
-            object[0].description = input.value
+            taskFound.description = input.value
         }
         else{
-            object[0].status = input.value 
+            taskFound.status = input.value 
         }
     })
     divTask.innerHTML = ""
     crearElementoDiv(paramDataset + "")
 }
 
-const borrarRegistroDiv = (id)=>{
+const borrarRegistroDiv = (id) =>{
     const objetoFiltrado = tasks.findIndex(task=> task.id === id)
     let paramDataset = contenedorTodoList.dataset.name
 
@@ -165,14 +187,15 @@ const borrarRegistroDiv = (id)=>{
         tasks.splice(objetoFiltrado,1);
     }
     
+    console.log(tasks);
     // Refrescar elementos(Separar en una funcion)
     divTask.innerHTML = ""
     crearElementoDiv(paramDataset + "")
 }
 
 // Cambiar status a Completed 
-const completarRegistroDiv = (id)=>{
-    let object = tasks.filter(objeto=> id == objeto.id)
+const completarRegistroDiv = (id) =>{
+    let object = tasks.filter(objeto => id == objeto.id)
     let paramDataset = contenedorTodoList.dataset.name
 
     // Cambia el status del objeto
@@ -184,7 +207,8 @@ const completarRegistroDiv = (id)=>{
 }
 
 // Pintar los divs all, pending y completed si se presiona
-const pintarAllPendingCompleted = ()=>{
+// focusFilter
+const pintarAllPendingCompleted = () =>{
         all.forEach(boton => {
             boton.addEventListener("click", function() {
               // Remover la clase 'allClick' de todos los divs

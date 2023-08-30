@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Task App</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <div class="contenedorGeneral">
         <div class="contenedorTodoList">
             <div class="divInput">
-                <input type="text" class="addTask" placeholder="Add a new task">
+                <input type="text" class="addTask contenedorTodoList__input" placeholder="Add a new task" required>
             </div>
             <div class="divOptions">
                 <div class="all">All</div>
@@ -45,8 +46,7 @@
             </div>
         </div>
     </div>
-<script src="index.js" type="module">
 
-</script>
+    <script src="./js/index.js" type="module"></script>
 </body>
 </html>

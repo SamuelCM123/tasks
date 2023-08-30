@@ -1,0 +1,15 @@
+{
+  "name": "task-app",
+  "version": "1.0.0",
+  "description": "Aplicación que gestiona tareas del día a día.",
+  "main": "./js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}

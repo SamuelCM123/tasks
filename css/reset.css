@@ -1,0 +1,146 @@
+/*
+ * RESET CSS 
+ * 
+ * Estilos CSS que aplican un "reseteo" a los estilos establecidos por defecto
+ * en los navegadores de internet. Este código, es libre para proyectos y 
+ * maquetaciones web. 
+ * 
+ * Este reseteo, controla los siguientes aspectos: 
+ *
+ *   👉 Unificar el uso de Custom Properties. 
+ *   👉 Problemas de box-model más generales. 
+ *   👉 Problemas con imagenes, vídeos e iconos svg. 
+ *   👉 Problemas con tipografías y etiquetas input en formularios. 
+ *   👉 Unificar la tipografía de todas las etiquetas de una web. 
+ *
+ * Repositorio del creador: https://github.com/eduardofierropro/Reset-CSS
+ *
+*/
+
+/* ///  IMPORTACIÓN DE FUENTES  /// */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+
+/* ///  DEFINICIÓN DE CUSTOM PROPÉRTIES  /// */
+:root {
+    --color-a: #FFFFFF;
+    --color-f: #34495E;
+    --tipo-principal: 'Poppins', sans-serif;
+}
+
+/* ///  DESACTIVA LAS ANIMACIONES EN EL CASO DE QUE EL USUARIO HAYA CONFIGURADO EL MODO "SIN ANIMACIÓN"  /// */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        -webkit-animation: none !important;
+        animation: none !important;
+        -webkit-transition: none !important;
+        transition: none !important;
+    }
+}
+
+/* ///  RESETEAMOS EL MARGIN Y PADDING DE TODAS LAS ETIQUETAS  /// */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: baseline;
+    outline: none;
+}
+
+/* ///  OPTIMIZACIÓN DE IMAGENES  /// */
+img, picture, video, iframe, figure {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+}
+
+/* ///  RESETEAMOS LOS ENLACES PARA QUE FUNCIONEN COMO CAJA  /// */
+a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+}
+
+/* ///  ...EXCEPTO LOS ENLACES QUE SE ENCUENTRÁN EN PÁRRAFOS  /// */
+p a {
+    display: inline;
+}
+
+/* ///  REMOVEMOS LAS VIÑETAS DE LAS ETIQUETAS <LI>  /// */
+li {
+    list-style-type: none;
+}
+
+/* ///  CONFIGURACIÓN DE ANVLAS SUAVES  /// */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ///  RESETEO A LOS ESTILOS POR DEFECTO DE LAS ETIQUETAS DE TEXTO  /// */
+h1, h2, h3, h4, h5, h6, p, span, a, strong, blockquote, i, b, u, em {
+    font-size: 1em;
+    font-weight: inherit;
+    font-style: inherit;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ///  CONFIGURACIÓN DE TEXTO SELECCIONADO  /// */
+::-moz-selection {
+    background-color: #293277c1;
+    color: #FFFFFF;
+}
+
+::selection {
+    background-color: #293277c1;
+    color: #FFFFFF;
+}
+
+/* ///  RESETEAMOS ESILOS DE TIPOGRAFÍAS Y COLOCACIÓN DE FORMULARIOS /// */
+form, input, textarea, select, button, label {
+    font-family: inherit;
+    font-size: inherit;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    background-color: transparent;
+    color: inherit;
+    display: block;
+
+    /* --- opcional --- */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* ///  RESETEO DE TABLAS  /// */
+table, tr, td {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ///  RESETEO DE ESTILOS EN IMÁGENES SVG  /// */
+svg {
+    width: 100%;
+    display: block;
+    fill: currentColor;
+}
+
+/* ///  CONFIGURACIÓN BASE PARA TODA LA WEB /// */
+body {
+    background-color: var(--color-a);
+    min-width: 100%;
+    min-height: 100vh;
+    font-size: 100%;
+    font-family: var(--tipo-principal);
+    color: var(--color-f);
+    line-height: 1.4em;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* --- Comentar el outline en producción --- */
+    outline: 8px dashed red; 
+}
